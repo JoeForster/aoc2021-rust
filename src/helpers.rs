@@ -18,7 +18,7 @@ impl FileReader {
 		buffer: &'buf mut String,
 	) -> Option<io::Result<&'buf mut String>> {
 		buffer.clear();
-
+		// TODO may be best to try and strip out endlines here?
 		self.reader
 			.read_line(buffer)
 			.map(|u| if u == 0 { None } else { Some(buffer) })

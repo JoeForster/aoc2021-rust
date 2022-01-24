@@ -27,8 +27,13 @@ fn read_grid() -> Map {
 	
 	let mut file_reader = FileReader::open("day13_input.txt").expect("Failed to open file");
 	
-	while let Some(line) = file_reader.read_line(&mut buffer) {
-		println!("Buffer: {}", buffer);
+	while let Some(_line) = file_reader.read_line(&mut buffer) {
+		// Note the "empty line" will still have an endline char.
+		println!("Buffer: '{}'", buffer);
+		if buffer.trim().is_empty() {
+			break;
+		}
+		
 		let mut two_numbers = buffer.trim().split(",");
 		let x : usize = two_numbers.next()
 			.expect("Bad coordinate format")
