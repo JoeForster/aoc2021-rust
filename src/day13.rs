@@ -64,7 +64,7 @@ fn read_grid() -> Map {
 	let mut height : usize = 0; 
 	let mut buffer = String::new();
 	
-	let mut file_reader = FileReader::open("day13_input.txt").expect("Failed to open file");
+	let mut file_reader = FileReader::open("inputs/day13.txt").expect("Failed to open file");
 	//let mut file_reader = FileReader::open("day13_input_example.txt").expect("Failed to open file");
 	
 	while let Some(_line) = file_reader.read_line(&mut buffer) {

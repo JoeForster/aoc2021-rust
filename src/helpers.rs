@@ -29,7 +29,7 @@ impl FileReader {
 
 //pub fn read_line(day: u32) -> Option<String> {
 //	
-//	let file_name = format!("day{}_input.txt", day);
+//	let file_name = format!("inputs/day{}.txt", day);
 //	let file_opt = File::open(filename);
 //	match file_opt {
 //		Some(file) => {
