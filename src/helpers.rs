@@ -1,4 +1,4 @@
-use std::io::{self, BufRead};
+use std::io::{self, BufRead, Read};
 use std::fs::File;
 
 pub struct FileReader {
@@ -50,3 +50,12 @@ impl FileReader {
 //	}
 //}
 
+// Quick helper for reading answers. Liable to change when generalised to all days.
+// TODO at least return an option, which we'll need for incomplete days..?
+pub fn read_answer(day: u32, part: u32) -> String {
+	let mut answer_str = String::new();
+	let mut answer_file = File::open(format!("answers/day{}_part{}.txt", day, part))
+		.expect("Couldn't read answer file");
+	answer_file.read_to_string(&mut answer_str).expect("Failed to read string");
+	return answer_str;
+}

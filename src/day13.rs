@@ -1,14 +1,5 @@
 use std::fmt;
-//use std::str::FromStr;
-//use std::collections::HashMap;
-//use std::collections::HashSet;
 
-// TODO to impl display
-//struct Row {
-//	vals: Vec<bool>
-//}
-
-//use crate::helpers::helpers::read_line;
 use crate::helpers::FileReader;
 
 #[derive(Debug, Clone, PartialEq)]

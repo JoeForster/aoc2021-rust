@@ -1,6 +1,28 @@
-use std::io;
+use crate::helpers::FileReader;
+use crate::helpers::read_answer;
 
-fn day1_part1(v: &Vec<u32>) {
+fn read_input() -> Vec<u32> {
+	let mut input_reader = FileReader::open("inputs/day1.txt").expect("Failed to open file");
+
+	let mut v: Vec<u32> = Vec::new();
+	let mut buffer = String::new();
+	while let Some(_line) = input_reader.read_line(&mut buffer) {
+		let number: u32 = match buffer.trim().parse() {
+			Ok(number) => number,
+			Err(_) => break,
+		};
+
+		//println!("Here is the number you typed: {}", number);
+		v.push(number);
+	}
+	println!("Here's the input:");
+	for n in &v {
+		println!("{}", n);
+	}
+	return v;
+}
+
+fn part1(v: &Vec<u32>) -> String {
 	
 	let mut increases = 0;
 	let mut prev : u32 = 0;
@@ -12,10 +34,11 @@ fn day1_part1(v: &Vec<u32>) {
 		prev = *n
 	}
 	println!("Number of increases: {}", increases);
+	return increases.to_string();
 
 }
 
-fn day1_part2(v: &Vec<u32>) {
+fn part2(v: &Vec<u32>) -> String {
 
 	let mut increases = 0;
 	let mut prev : u32 = 0;
@@ -31,36 +54,19 @@ fn day1_part2(v: &Vec<u32>) {
 		index = index + 1;
 	}
 	println!("Number of increases with sliding windows: {}", increases);
-
+	return increases.to_string();
 }
 
 pub fn run() {
-	let mut v: Vec<u32> = Vec::new();
-	loop {			
-		let mut input = String::new();
-		println!("Type something:");
-
-		io::stdin()
-			.read_line(&mut input)
-			.expect("Failed to read line");
-
-		//println!("Here is the thing you typed: {}", input);
-
-		let number: u32 = match input.trim().parse() {
-			Ok(number) => number,
-			Err(_) => break,
-		};
-
-		//println!("Here is the number you typed: {}", number);
-		v.push(number);
-
-	}
-	println!("Here are the numbers you typed:");
-	for n in &v {
-		println!("{}", n);
-	}
 	
-	day1_part1(&v);
+	let v = read_input();
+	
+	// TODO: generalise to all the other days for unit testing without all this repetition.
+	let part1_answer = read_answer(1, 1);
+	let part1_result = part1(&v);
+	assert!(part1_result == part1_answer);
 
-	day1_part2(&v);
+	let part2_answer = read_answer(1, 2);
+	let part2_result = part2(&v);
+	assert!(part2_result == part2_answer);
 }
